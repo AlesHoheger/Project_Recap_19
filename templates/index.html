@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block container %}
+
+{% if user %}
+<!-- Uporabnik je znan, prikazujemo obrazec za ugibanje -->
+<h2>Pozdravljen {{user.name}}!</h2>
+<form action="/result" method="post">
+    <div class="form-group row mt-5">
+        <label class="col-sm-3 col-form-label" for="guess">Ugani</label>
+        <div class="col-sm-6">
+            <input class="form-control" type="number" name="guess" id="guess" placeholder="stevilo 1-{{max_guess}}">
+        </div>
+        <div class="col-sm-3">
+            <button type="submit" class="btn btn-primary">Poiskusi</button>
+        </div>
+    </div>
+</form>
+{% else %}
+<!-- Uporabnik ni prijavljen, prikazujemo obrazec za prijavo -->
+<h2>Zdravo!</h2>
+<p>Pozdravravljen in dobrodošel na našo spletno ugibalnico!</p>
+<p>Za igranje bi najprej potrebovali tvoje ime.</p>
+<form action="/add-user" method="post">
+    <div class="form-group row mt-5">
+        <label class="col-sm-3 col-form-label" for="guess">Ime</label>
+        <input class="form-control" type="text" name="name" id="name" placeholder="Tvoje ime">
+    </div>
+    <div class="form-group row">
+        <label class="col-sm-3 col-form-label" for="guess">Email</label>
+        <input class="form-control" type="email" name="email" id="email" placeholder="Tvoj email">
+    </div>
+    <div class="form-group row">
+        <button type="submit" class="btn btn-primary">Začni</button>
+    </div>
+</form>
+{% endif %}
+{% endblock container %}

@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block container %}
+{#
+<!--
+V 13 vrstici vidimo: {{ type | default('info', true) }}
+Del po "pipe" znaku (|) je Jinja filter. Konkretno je v na[em primeru to funkcija default(), ki vrne prvo vrednost,
+če je vrednost type None (ali prazen string)
+
+Glej https://jinja.palletsprojects.com/en/2.11.x/templates/#builtin-filters
+-->
+#}
+<div class="alert alert-{{ type | default('info', true) }}">{{message}}</div>
+<div class="d-flex justify-content-center">
+    <a href="/"><button class="btn btn-primary">&larr; Nazaj</button></a>
+</div>
+
+{% endblock container %}
